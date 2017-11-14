@@ -1,24 +1,47 @@
 {
   "name": "generator-electron-kit",
   "version": "1.0.0",
-  "description": "Generic electron application builder",
+  "description": "Electron app powered by Feathersjs",
   "main": "index.js",
   "scripts": {
+    "check:lint": "eslint --config .eslintrc .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/indieDevelopments/generator-electron.git"
+    "url": "git+https://github.com/indieDevelopments/generator-electron-kit.git"
+  },
+  "files": [
+    "generators"
+  ],
+  "engines": {
+    "node": ">= 7.6.0",
+    "npm": ">= 4.6.0"
   },
   "keywords": [
     "electron",
     "generator",
-    "yo"
+    "yo",
+    "yeoman-generator",
+    "feathersjs"
   ],
   "author": "rogaldh",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/indieDevelopments/generator-electron/issues"
+    "url": "https://github.com/indieDevelopments/generator-electron-kit/issues"
   },
-  "homepage": "https://github.com/indieDevelopments/generator-electron#readme"
+  "homepage": "https://github.com/indieDevelopments/generator-electron-kit#readme",
+  "dependencies": {
+    "generator-feathers": "^2.0.0",
+    "util.promisify": "^1.0.0",
+    "yeoman-generator": "^1.1.1"
+  },
+  "devDependencies": {
+    "babel-eslint": "^7.2.3",
+    "eslint": "^4.2.0",
+    "eslint-config-cleanjs": "^4.0.0",
+    "eslint-plugin-better": "^0.1.5",
+    "eslint-plugin-fp": "^2.3.0",
+    "eslint-plugin-import": "^2.8.0"
+  }
 }
