@@ -1,7 +1,7 @@
 {
   "name": "generator-electron-kit",
   "version": "1.0.0",
-  "description": "Generic electron application builder",
+  "description": "Electron app powered by Feathersjs",
   "main": "index.js",
   "scripts": {
     "check:lint": "eslint --config .eslintrc .",
