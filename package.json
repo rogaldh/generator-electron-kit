@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/indieDevelopments/generator-electron.git"
+    "url": "git+https://github.com/indieDevelopments/generator-electron-kit.git"
   },
   "files": [
     "generators"
@@ -22,14 +22,15 @@
     "electron",
     "generator",
     "yo",
-    "yeoman-generator"
+    "yeoman-generator",
+    "feathersjs"
   ],
   "author": "rogaldh",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/indieDevelopments/generator-electron/issues"
+    "url": "https://github.com/indieDevelopments/generator-electron-kit/issues"
   },
-  "homepage": "https://github.com/indieDevelopments/generator-electron#readme",
+  "homepage": "https://github.com/indieDevelopments/generator-electron-kit#readme",
   "dependencies": {
     "generator-feathers": "^2.0.0",
     "util.promisify": "^1.0.0",
