@@ -1,0 +1,44 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "cleanjs"
+  ],
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module"
+  },
+  "rules": {
+    "prefer-arrow-callback": "error",
+    "import/no-commonjs": "off",
+    "semi": [
+      "error",
+      "never"
+    ],
+    "indent": [
+      "error",
+      2
+    ],
+    "linebreak-style": [
+      "error",
+      "unix"
+    ],
+    "quotes": [
+      "error",
+      "single"
+    ],
+    "comma-dangle": [
+      "error",
+      "only-multiline"
+    ]
+  },
+  "env": {
+    "mocha": true,
+    "node": true,
+    "browser": false
+  },
+  "globals": {
+    "Promise": true,
+    "Reflect": true
+  }
+}
