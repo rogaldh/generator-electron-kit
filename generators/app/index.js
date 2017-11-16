@@ -79,22 +79,19 @@ module.exports = class extends Gen {
                   .then((packageJSON) => {
                     const scripts = Object.assign({}, packageJSON.scripts || {}, {
                       'test': 'npm run check:lint && npm run check:mocha',
+                      'start': 'electron ./src/electron',
                       'check:lint': 'eslint src/. test/.',
                       'check:mocha': 'cross-env BABEL_DISABLE_CACHE=1 NODE_PATH=./src node ./node_modules/mocha/bin/mocha --compilers js:babel-core/register test/ --recursive',
                       'build': 'cross-env NODE_ENV=production concurrently "npm run build:webpack"',
                       'build:webpack': 'cross-env BABEL_ENV=webpack node ./node_modules/webpack/bin/webpack --config webpack.default.config.js --profile --colors',
                       'build:webpack:verbose': 'npm run build:webpack -- --progress',
-                      'prebuild:platform': 'node ./node_modules/rimraf/bin ./out',
-                      'build:platform': 'npm run build',
-                      'build:platform:linux': 'node ./node_modules/electron-builder/out/cli/cli --linux zip',
-                      'build:platform:win': 'node ./node_modules/electron-builder/out/cli/cli --win --x64',
-                      'build:platform:all': 'node ./node_modules/electron-builder/out/cli/cli -mwl',
-                      'start': 'electron ./src/electron',
-                      'package': 'npm run build:platform && node ./node_modules/electron-builder/out/cli/cli --publish never',
-                      'package:all': 'npm run build:platform && npm run build:platform:all',
-                      'package:win': 'npm run build:platform && npm run build:platform:win',
-                      'package:linux': 'npm run build:platform && npm run build:platform:linux',
-                      'rebuild': 'node ./node_modules/electron-builder/out/cli/cli install-app-deps',
+                      'prebuild:platform': 'node ./node_modules/rimraf/bin ./build/Release',
+                      'build:platform': 'node ./node_modules/electron-builder/out/cli/cli --config .electron-builder.json',
+                      'build:platform:all': 'npm run build:platform -- -l',
+                      'build:platform:silent': 'npm run build:platform -- --publish never',
+                      'package': 'npm run build && build:platform:silent',
+                      'package:all': 'npm run build && npm run build:platform:all',
+                      'rebuild': 'npm run build:platform -- install-app-deps'
                     })
                     Reflect.deleteProperty(scripts, 'eslint') // eslint-disable-line fp/no-unused-expression
                     Reflect.deleteProperty(scripts, 'mocha') // eslint-disable-line fp/no-unused-expression
