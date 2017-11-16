@@ -58,6 +58,10 @@ module.exports = class extends Gen {
                   this.templatePath('./src/utils'),
                   this.destinationPath(`${directory}/utils`)
                 ),
+                this.fs.copy(
+                  this.templatePath('./index.js'),
+                  this.destinationPath(`${directory}/`)
+                ),
               ])) // copy electron assets to specified dir
               .then(() => {
                 const pathToPackageJSON = this.destinationPath('package.json')
