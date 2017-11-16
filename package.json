@@ -2,7 +2,7 @@
   "name": "generator-electron-kit",
   "version": "1.1.0",
   "description": "Electron app powered by Feathersjs",
-  "main": "index.js",
+  "main": "/",
   "scripts": {
     "check:lint": "eslint --config .eslintrc .",
     "test": "echo \"Error: no test specified\" && exit 1"

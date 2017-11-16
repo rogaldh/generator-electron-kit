@@ -60,16 +60,16 @@ module.exports = class extends Gen {
                 ),
                 this.fs.copy(
                   this.templatePath('./index.js'),
-                  this.destinationPath(`${directory}/`)
+                  this.destinationPath('index.js')
                 ),
                 this.fs.copy(
                   this.templatePath('./.electron-builder.ejs'),
-                  this.destinationPath(`${directory}/.electron-builder.json`),
+                  this.destinationPath('.electron-builder.json'),
                   {
                     // TODO: Should pass basic values for electron-builder from argv
                     packageName: 'PACKAGE_NAME',
-                    author: 'AUTHOR',
-                  },
+                    author: 'AUTHOR'
+                  }
                 ),
               ])) // copy electron assets to specified dir
               .then(() => {
@@ -79,7 +79,7 @@ module.exports = class extends Gen {
                   .then((packageJSON) => {
                     const scripts = Object.assign({}, packageJSON.scripts || {}, {
                       'test': 'npm run check:lint && npm run check:mocha',
-                      'start': 'electron ./src/electron',
+                      'start': 'electron .',
                       'check:lint': 'eslint src/. test/.',
                       'check:mocha': 'cross-env BABEL_DISABLE_CACHE=1 NODE_PATH=./src node ./node_modules/mocha/bin/mocha --compilers js:babel-core/register test/ --recursive',
                       'build': 'cross-env NODE_ENV=production concurrently "npm run build:webpack"',
@@ -96,7 +96,7 @@ module.exports = class extends Gen {
                     Reflect.deleteProperty(scripts, 'eslint') // eslint-disable-line fp/no-unused-expression
                     Reflect.deleteProperty(scripts, 'mocha') // eslint-disable-line fp/no-unused-expression
 
-                    const newPackageJSON = Object.assign({}, packageJSON, { scripts })
+                    const newPackageJSON = Object.assign({}, packageJSON, { scripts }, { main: '/' })
 
                     return this.fs.writeJSON(pathToPackageJSON, newPackageJSON)
                   }) // inject Electron-specific scripts
