@@ -62,7 +62,7 @@ module.exports = class extends Gen {
                   this.templatePath('./index.js'),
                   this.destinationPath('index.js')
                 ),
-                this.fs.copy(
+                this.fs.copyTpl(
                   this.templatePath('./.electron-builder.ejs'),
                   this.destinationPath('.electron-builder.json'),
                   {
