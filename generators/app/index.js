@@ -62,6 +62,15 @@ module.exports = class extends Gen {
                   this.templatePath('./index.js'),
                   this.destinationPath(`${directory}/`)
                 ),
+                this.fs.copy(
+                  this.templatePath('./.electron-builder.ejs'),
+                  this.destinationPath(`${directory}/.electron-builder.json`),
+                  {
+                    // TODO: Should pass basic values for electron-builder from argv
+                    packageName: 'PACKAGE_NAME',
+                    author: 'AUTHOR',
+                  },
+                ),
               ])) // copy electron assets to specified dir
               .then(() => {
                 const pathToPackageJSON = this.destinationPath('package.json')
@@ -103,7 +112,7 @@ module.exports = class extends Gen {
                     const pathToIndexTemplate = this.templatePath('./src/index.js')
                     return Promise.resolve(this.fs.read(pathToIndexTemplate))
                       .then((newIndexjs) => {
-                        const content = `/** ${indexjs.replace(/\/\*/, '//').replace(/\*\//,'')} */ \
+                        const content = `/** ${indexjs.replace(/\/\*/, '//').replace(/\*\//, '')} */ \
                         ${newIndexjs}`
                         return this.fs.write(pathToIndex, content)
                       })

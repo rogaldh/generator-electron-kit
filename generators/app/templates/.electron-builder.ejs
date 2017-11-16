@@ -1,0 +1,29 @@
+{
+  "productName": "<%= packageName %>",
+  "compression": "normal",
+  "appId": "<%= packageName %>",
+  "files": [
+    "src",
+    "public",
+    "config",
+    "index.js",
+    "setup.sh"
+  ],
+  "linux": {
+    "vendor": "<%= author %>",
+    "maintainer": "<%= author %>",
+    "category": "application",
+    "packageCategory": "application",
+    "target": [
+      "deb"
+    ]
+  },
+  "deb": {
+    "afterInstall": "setup.sh",
+    "priority": "important"
+  },
+  "directories": {
+    "buildResources": "resources",
+    "output": "build/Release"
+  }
+}
