@@ -49,7 +49,7 @@ const onReady = ({ BrowserWindow, screen }, server) => {
   })
 
   win.on('closed', () => {
-    win.close()
+    // win.close()
     return debug('Attempt to close the app')
   })
 
